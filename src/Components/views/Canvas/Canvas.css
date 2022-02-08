@@ -1,0 +1,6 @@
+.canvas {
+border: 2px solid #000000;
+box-sizing: border-box;
+filter: drop-shadow(4px 6px 8px rgba(0, 0, 0, 0.3));
+border-radius: 10px;
+}

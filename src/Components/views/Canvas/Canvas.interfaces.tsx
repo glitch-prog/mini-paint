@@ -13,7 +13,6 @@ export interface ICanvasView {
   // draw: MouseEventHandler<Element>;
   draw:(event:any)=>void;
 
-  handleClickSetSaved: () => void;
 
   canvasRef: React.LegacyRef<HTMLCanvasElement>;
 }

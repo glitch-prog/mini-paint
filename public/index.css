@@ -1,0 +1,15 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* #root {
+  width: 1050px;
+  margin-left: auto;
+  margin-right: auto;
+} */
+
+html {
+  background-color: #afafaf;
+}

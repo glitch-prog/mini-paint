@@ -12,7 +12,7 @@ export interface ITest {
 export interface ICanvasContainer {
   saved: string;
   setSaved: (arg: string | undefined) => void;
-  createImage: ()=>void;
+  // createImage: ()=>void;
 }
 
 export interface IEvent {

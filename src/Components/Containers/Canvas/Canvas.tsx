@@ -11,7 +11,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 export function CanvasContainer({
   saved,
   setSaved,
-  createImage,
+
 }: ICanvasContainer) {
   const dispatch = useAppDispatch();
   const color = useAppSelector((state) => state.color.color);
@@ -127,21 +127,15 @@ export function CanvasContainer({
     }
   };
 
-  const handleClickSetSaved = () => {
-    // setSaved(canvasRef.current.toDataURL());
-
-    const card = {};
-    dispatch({ type: 'ADD_CARD', payload: card });
-    createImage();
-  };
+  
 
   useEffect(() => {
    
     const canvas: HTMLCanvasElement | null = canvasRef.current;
     const context = canvas?.getContext('2d');
     context!.lineCap = 'round';
-    // context.scale(2, 2);
-    // context.lineCap = 'round';
+    // context!.scale(2, 2);
+    // context!.lineCap = 'round';
     context!.strokeStyle = color;
     context!.lineWidth = +strokeSize;
     contextRef.current = context;
@@ -153,7 +147,7 @@ export function CanvasContainer({
         startDrawing={startDrawing}
         finishDrawing={finishDrawing}
         draw={draw}
-        handleClickSetSaved={handleClickSetSaved}
+       
         canvasRef={canvasRef}
       />
     </div>

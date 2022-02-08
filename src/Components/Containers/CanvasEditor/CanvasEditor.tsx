@@ -53,6 +53,14 @@ export function CanvasEditorContainer() {
     const test = getImages(todosCollectionRef);
   };
 
+  const handleClickSetSaved = () => {
+    // setSaved(canvasRef.current.toDataURL());
+
+    const card = {};
+    dispatch({ type: 'ADD_CARD', payload: card });
+    createImage();
+  };
+
   console.log(tool);
   return (
     <div>
@@ -60,8 +68,7 @@ export function CanvasEditorContainer() {
         saved={saved}
         setSaved={setSaved}
         createImage={createImage}
-        handleClickSetTool={handleClickSetTool}
-      />
+        handleClickSetTool={handleClickSetTool} handleClickSetSaved={handleClickSetSaved}      />
     </div>
   );
 }
