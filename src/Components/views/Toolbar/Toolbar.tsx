@@ -19,8 +19,8 @@ export function ToolbarView({ handleClickSetTool }: IToolbar) {
         <button className='Circle' onClick={handleClickSetTool}>
           <img src={circle} alt='Circle' />
         </button>
-        <button className='Straight line' onClick={handleClickSetTool}>
-          <img src={line} alt='Straight line' />
+        <button className='Straight Line' onClick={handleClickSetTool}>
+          <img src={line} alt='Straight Line' />
         </button>
       </>
     </div>
