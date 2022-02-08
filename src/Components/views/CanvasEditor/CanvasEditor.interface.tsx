@@ -1,12 +1,8 @@
-import { MouseEventHandler } from 'react';
+import React, { MouseEventHandler, SetStateAction } from 'react';
 
 export interface ICanvasEditor {
   saved: string;
-  setSaved: any;
-  createImage: any;
-  strokeSize: string;
-  setStrokeSize: React.SetStateAction<any>;
-  handleClickSetTool: (event: any) => void;
+  setSaved: SetStateAction<any>;
+  createImage: () => void;
+  handleClickSetTool: (event: {target:{textContent:string}}) => void;
 }
-
-

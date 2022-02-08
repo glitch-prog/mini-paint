@@ -1,12 +1,14 @@
+import { PayloadAction } from '@reduxjs/toolkit';
+import { SetStateAction } from 'react';
 
 
 const defaultGalleryState = {
-  cards: [],
+  cards:[] ,
 };
 
 export const galleryReducer = (
   state = defaultGalleryState,
-  action: { type: string; payload: string }
+  action:PayloadAction<any>
 ) => {
   switch (action.type) {
     case 'ADD_CARD':

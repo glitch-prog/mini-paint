@@ -1,9 +1,5 @@
-export interface ICanvasGallery {
-  images: any;
-  getImages: any;
-}
 export interface ICard {
-  id: any;
+  id: string;
   uuid: string;
   img: string;
   user: string;

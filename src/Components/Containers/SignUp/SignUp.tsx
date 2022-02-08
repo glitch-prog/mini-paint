@@ -20,7 +20,8 @@ export function SignUpContainer() {
       );
       console.log(user);
       navigate(CANVAS_PAGE);
-    } catch (error: any) {
+    } catch (error:any) {
+      console.log(typeof error)
       alert(error.message);
       console.log(error.message);
     }

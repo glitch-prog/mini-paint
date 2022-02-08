@@ -1,3 +1,5 @@
+import { SetStateAction } from 'react';
+
 export interface INativeElement {
   nativeEvent: { offsetX: any; offsetY: any };
 }
@@ -8,10 +10,13 @@ export interface ITest {
 }
 
 export interface ICanvasContainer {
-  
-  strokeSize: string;
- 
   saved: string;
-  setSaved: any;
-  createImage: any;
+  setSaved: (arg: string | undefined) => void;
+  createImage: ()=>void;
+}
+
+export interface IEvent {
+  pageX: number;
+  target: { offsetLeft: number; offsetTop: number };
+  pageY: number;
 }

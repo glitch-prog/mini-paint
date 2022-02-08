@@ -1,4 +1,4 @@
 export interface IStrokeSizeInput {
   strokeSize: string;
-  handleChangeStrokeSize: (event: { target: { value: any } }) => void;
+  handleChangeStrokeSize: (event: { target: { value: string } }) => void;
 }

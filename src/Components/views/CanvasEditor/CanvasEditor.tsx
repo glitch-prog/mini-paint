@@ -12,19 +12,15 @@ export function CanvasEditorView({
   saved,
   setSaved,
   createImage,
-  strokeSize,
-  setStrokeSize,
+ 
 }: ICanvasEditor) {
   return (
     <div>
       <ColorInputContainer />
-      <StrokeSizeInputContainer
-        strokeSize={strokeSize}
-        setStrokeSize={setStrokeSize}
-      />
+      <StrokeSizeInputContainer/>
       <ToolbarContainer />
       <CanvasContainer
-        strokeSize={strokeSize}
+       
         saved={saved}
         setSaved={setSaved}
         createImage={createImage}

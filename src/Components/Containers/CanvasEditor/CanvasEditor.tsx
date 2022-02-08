@@ -4,17 +4,18 @@ import React, { useCallback, useState } from 'react';
 import { auth, db } from '../../../config/firebase-config';
 import { CanvasEditorView } from '../../views/CanvasEditor/CanvasEditor';
 import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 
 export function CanvasEditorContainer() {
-  const dispatch = useDispatch();
-  const tool = useSelector<any>((state) => state.tool.tool);
-  const cards = useSelector<any>((state) => state.gallery.cards);
+  const dispatch = useAppDispatch();
+  const tool = useAppSelector((state) => state.tool.tool);
+  const cards = useAppSelector((state) => state.gallery.cards);
+  const strokeSize = useAppSelector((state) => state.stroke.size);
 
-  const [strokeSize, setStrokeSize] = useState('10');
   const [user, setUser] = useState<User | null>();
-  const [saved, setSaved] = useState('');
+  const [saved, setSaved] = useState<string>('');
 
-  const handleClickSetTool = (event: any) => {
+  const handleClickSetTool = (event: { target: { textContent: string } }) => {
     dispatch({ type: 'CHANGE_TOOL', payload: event.target.textContent });
   };
 
@@ -27,34 +28,27 @@ export function CanvasEditorContainer() {
     }
   });
 
-  console.log(user);
-
   const getImages = useCallback(
     async (todosCollectionRef) => {
       const data = await getDocs(todosCollectionRef);
-
       dispatch({
         type: 'GET_CARDS',
-        payload: data.docs.map((doc: any) => ({ ...doc.data(), id: doc.id })),
+        payload: data.docs.map((doc:{data:any,id:string}) => ({ ...doc.data(), id: doc.id })),
       });
-
-      // setImages(data.docs.map((doc: any) => ({ ...doc.data(), id: doc.id })));
-      // console.log(setImages);
-      console.log(cards);
-      console.log(data.docs);
     },
     [dispatch, cards]
   );
 
   const createImage = async () => {
     const todosCollectionRef = collection(db, 'users');
+    const dateNow = new Date().toLocaleString();
     const card = {
       img: saved,
       uuid: uid,
       user: user?.email,
+      date: dateNow,
     };
     dispatch({ type: 'ADD_CARD', payload: card });
-    // const image = { img: saved, uuid: uid };
     await addDoc(todosCollectionRef, card);
     const test = getImages(todosCollectionRef);
   };
@@ -66,8 +60,6 @@ export function CanvasEditorContainer() {
         saved={saved}
         setSaved={setSaved}
         createImage={createImage}
-        strokeSize={strokeSize}
-        setStrokeSize={setStrokeSize}
         handleClickSetTool={handleClickSetTool}
       />
     </div>

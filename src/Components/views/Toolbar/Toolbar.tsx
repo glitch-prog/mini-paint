@@ -6,7 +6,6 @@ export function ToolbarView({
   handleClickSetAction,
   handleClickSetTool,
 }: IToolbar) {
-  
   return (
     <div>
       {active ? (

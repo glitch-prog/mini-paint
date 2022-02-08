@@ -8,13 +8,13 @@ export function ToolbarContainer() {
 
   const dispatch = useDispatch();
   const tool = useSelector<any>((state) => state.tool);
-  const handleClickSetTool = (event: any) => {
+  const handleClickSetTool = (event: any ) => {
     dispatch({ type: 'CHANGE_TOOL', payload: event.target.textContent });
+    console.log(tool);
   };
   const handleClickSetAction = () => {
     setActive(!active);
   };
-  console.log(tool);
   return (
     <div>
       <ToolbarView

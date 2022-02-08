@@ -1,8 +1,10 @@
+import { ISignUp } from "./SignUp.interface";
+
 export function SignUpView({
   handleOnChangeRegisterEmail,
   handleOnChangeRegisterPassword,
   register,
-}) {
+}:ISignUp) {
   return (
     <div>
       <div>
