@@ -20,7 +20,7 @@ export function ToolbarView({ handleClickSetTool }: IToolbar) {
           <img src={circle} alt='Circle' />
         </button>
         <button className='Straight line' onClick={handleClickSetTool}>
-          <img src={line} alt='Straight line' />
+          <img src={line} alt='Straight Line' />
         </button>
       </>
     </div>

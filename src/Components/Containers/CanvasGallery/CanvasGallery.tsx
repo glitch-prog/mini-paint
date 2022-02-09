@@ -6,6 +6,7 @@ import { CanvasGalleryCardView } from '../../views/CanvasGalleryCard/CanvasGalle
 import { useDispatch, useSelector } from 'react-redux';
 import { ICard } from './CanvasGallery.interface';
 import { useAppSelector } from '../../../hooks/hooks';
+import './CanvasGallery.css';
 
 export function CanvasGalleryContainer() {
   const cards = useAppSelector((state) => state.gallery.cards);
@@ -43,8 +44,12 @@ export function CanvasGalleryContainer() {
   });
 
   return (
-    <div>
-      <input type='text' onChange={handleChangeFilterUser} />
+    <div className='main__block'>
+      <input
+        className='search__input'
+        type='text'
+        onChange={handleChangeFilterUser}
+      />
       {filteredCards.map((us: ICard) => {
         return <CanvasGalleryCardView key={us.id} us={us} />;
       })}
