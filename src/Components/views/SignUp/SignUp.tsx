@@ -1,17 +1,21 @@
-import { ISignUp } from "./SignUp.interface";
+import { ISignUp } from './SignUp.interface';
+import './SignUp.css';
+import { Link } from 'react-router-dom';
+import { SIGN_IN_PAGE } from '../../../constants/constants';
 
 export function SignUpView({
   handleOnChangeRegisterEmail,
   handleOnChangeRegisterPassword,
   register,
-}:ISignUp) {
+}: ISignUp) {
   return (
-    <div>
+    <div className='wrapper'>
       <div>
         <h3> Sign up </h3>
         <div>
           <p>Email</p>
           <input
+            className='signup__input'
             placeholder='Enter your email address...'
             onChange={handleOnChangeRegisterEmail}
           />
@@ -19,20 +23,23 @@ export function SignUpView({
         <div>
           <p>Password</p>
           <input
+            className='signup__input'
             placeholder='Enter your password...'
             type='password'
             onChange={handleOnChangeRegisterPassword}
           />
         </div>
 
-        <button onClick={register}> Sign up </button>
+        <button className='signup__btn' onClick={register}>
+          Sign up
+        </button>
       </div>
 
-      {/* <div>
-        <Link to={LOGIN_PAGE} className={styles.link}>
+      <div>
+        <Link to={SIGN_IN_PAGE} className='link'>
           Sign in
         </Link>
-      </div> */}
+      </div>
     </div>
   );
 }
