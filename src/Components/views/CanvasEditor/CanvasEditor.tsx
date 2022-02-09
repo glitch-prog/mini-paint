@@ -16,7 +16,7 @@ export function CanvasEditorView({
   handleClickSetSaved,
 }: ICanvasEditor) {
   return (
-    <div>
+    <div className={styles.main__block}>
       <div className={styles.toolbar}>
         <button className={styles.save__btn} onClick={handleClickSetSaved}>
           Save
@@ -28,7 +28,9 @@ export function CanvasEditorView({
         </div>
 
         <button className={styles.save__btn}>
-          <Link className={styles.link} to={GALLERY_PAGE}>Gallery</Link>
+          <Link className={styles.link} to={GALLERY_PAGE}>
+            Gallery
+          </Link>
         </button>
       </div>
       <CanvasContainer saved={saved} setSaved={setSaved} />
