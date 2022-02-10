@@ -1,10 +1,21 @@
-# Getting Started with Create React App
+# Mini-paint
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Task
 
-## Available Scripts
+The task was to create an app for drawing simple figures. Here you can see requirements for this project:
+https://docs.google.com/document/d/1K79_NA4lMYfqQiIJGqLDek1K9z-oc2qg8n4AvrN1PXE/edit
 
-In the project directory, you can run:
+## How to run the app
+
+### npm install
+
+First of all, you should intsall some modules and libraries. Here is the list of them:
+1. npm - npm install
+2. redux - npm install redux react-redux
+3. react-router-dom(v6) - npm install react-router-dom
+4. Firebase - npm install firebase
+
+Also, you should check some TypeScript modules for these libraries.
 
 ### `npm start`
 
@@ -39,8 +50,16 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+##  Database Snapshot
+![image](https://user-images.githubusercontent.com/80006516/153363280-b13f7d05-712d-4ef4-ab55-8a1cb72e9e18.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Application stack
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+For this project, next libraries and tools have been chosen:
+
+- React
+- TypeScript
+- Redux
+- React-router-dom
+- Firebase(Firebase Authentication, Firebase Firestore)
+
