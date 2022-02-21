@@ -1,4 +1,4 @@
 export interface IStrokeSizeInput {
   strokeSize: string;
-  setStrokeSize: React.SetStateAction<any>;
+  setStrokeSize: React.SetStateAction<string>;
 }

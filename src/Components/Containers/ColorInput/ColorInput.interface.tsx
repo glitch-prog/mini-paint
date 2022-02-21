@@ -1,3 +1,3 @@
 export interface IColorInput {
-  setColor: React.SetStateAction<any>;
+  setColor: React.SetStateAction<string>;
 }

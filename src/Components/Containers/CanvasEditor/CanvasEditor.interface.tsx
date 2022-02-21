@@ -1,6 +1,5 @@
-import { SetStateAction } from "react";
+import { SetStateAction } from 'react';
 
 export interface ISetColorHook {
   color: string;
 }
-

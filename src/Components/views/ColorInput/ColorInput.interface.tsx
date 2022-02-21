@@ -1,8 +1,6 @@
-import { StringLiteralLike } from "typescript";
+import { StringLiteralLike } from 'typescript';
 
 export interface IColorInput {
   color: string;
-  handleChangeColor: (event: {
-    target: { value: React.SetStateAction<string> };
-  }) => void;
+  handleChangeColor: (event: { target: { value: string } }) => void;
 }

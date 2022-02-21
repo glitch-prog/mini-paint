@@ -1,15 +1,21 @@
-import { PayloadAction } from '@reduxjs/toolkit';
-import { SetStateAction } from 'react';
+import { AnyAction, PayloadAction } from '@reduxjs/toolkit';
 
+interface ICard {
+  img: string | undefined;
+  uuid: string | undefined;
+  user: string | undefined;
+  date: string | undefined;
+}
 
-const defaultGalleryState = {
-  cards:[] ,
+interface IDefaultGalleryState {
+  cards: ICard[];
+}
+
+const defaultGalleryState: IDefaultGalleryState = {
+  cards: [],
 };
 
-export const galleryReducer = (
-  state = defaultGalleryState,
-  action:PayloadAction<any>
-) => {
+export const galleryReducer = (state = defaultGalleryState, action: AnyAction) => {
   switch (action.type) {
     case 'ADD_CARD':
       return { ...state, cards: [...state.cards, action.payload] };

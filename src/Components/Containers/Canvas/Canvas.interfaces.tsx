@@ -1,7 +1,7 @@
 import { SetStateAction } from 'react';
 
 export interface INativeElement {
-  nativeEvent: { offsetX: any; offsetY: any };
+  nativeEvent: { offsetX: number; offsetY: number };
 }
 
 export interface ITest {
@@ -9,14 +9,14 @@ export interface ITest {
   y: number;
 }
 
-export interface ICanvasContainer {
-  saved: string;
-  setSaved: (arg: string | undefined) => void;
-  // createImage: ()=>void;
-}
-
 export interface IEvent {
   pageX: number;
-  target: { offsetLeft: number; offsetTop: number };
+  target: { offsetLeft: number; offsetTop: number; className: string };
   pageY: number;
+}
+
+export interface ITool {
+  currentX: number;
+  currentY: number;
+  img: string;
 }

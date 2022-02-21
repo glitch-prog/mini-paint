@@ -1,25 +1,16 @@
-import React, { ContextType, useEffect, useRef, useState } from 'react';
-// import { useCanvas } from './CanvasContext';
-// import rough from 'roughjs';
-
-import { ICanvasContainer, IEvent, INativeElement } from './Canvas.interfaces';
-
+import React, { MutableRefObject, RefObject, useEffect, useRef, useState } from 'react';
 import { CanvasView } from '../../views/Canvas/Canvas';
-import { useDispatch, useSelector } from 'react-redux';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 
-export function CanvasContainer({
-  saved,
-  setSaved,
-
-}: ICanvasContainer) {
+export const CanvasContainer = () => {
   const dispatch = useAppDispatch();
   const color = useAppSelector((state) => state.color.color);
   const tool = useAppSelector((state) => state.tool.tool);
   const strokeSize = useAppSelector((state) => state.stroke.size);
+  const saved = useAppSelector((state) => state.img.image);
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const contextRef = useRef<any>(null!);
+  const contextRef = useRef<CanvasRenderingContext2D | null>(null);
 
   const [isDrawing, setIsDrawing] = useState(false);
   const [startPosition, setPosition] = useState({
@@ -27,129 +18,124 @@ export function CanvasContainer({
     y: 0,
   });
 
-  const startDrawing = (event: any) => {
-    // const { offsetX, offsetY } = nativeEvent;
+  const startDrawing = (event: React.MouseEvent<HTMLElement>) => {
+    const target = event.target as HTMLElement;
     if (contextRef.current != null) {
       contextRef.current.beginPath();
-      // contextRef.current.moveTo(offsetX, offsetY);
     }
     setIsDrawing(true);
-    let startX = event.pageX - event.target.offsetLeft;
-    let startY = event.pageY - event.target.offsetTop;
+    const startX = event.pageX - target.offsetLeft;
+    const startY = event.pageY - target.offsetTop;
     setPosition({ x: startX, y: startY });
-    setSaved(canvasRef.current?.toDataURL());
-    
+    // setSaved(canvasRef.current?.toDataURL());
+    dispatch({ type: 'ADD_IMG', payload: canvasRef.current?.toDataURL() });
   };
 
   const finishDrawing = () => {
-    contextRef.current.closePath();
+    contextRef.current?.closePath();
     setIsDrawing(false);
-    setSaved(canvasRef.current?.toDataURL());
+    dispatch({ type: 'ADD_IMG', payload: canvasRef.current?.toDataURL() });
   };
 
-  const draw = (event: IEvent) => {
+  function setBrush(currentX: number, currentY: number, img: HTMLImageElement) {
+    img.src = saved as unknown as string;
+    img.onload = async function () {
+      contextRef.current?.lineTo(currentX, currentY);
+      contextRef.current?.stroke();
+    };
+  }
+
+  function setRectangle(width: number, height: number, canvas: HTMLCanvasElement, img: HTMLImageElement) {
+    img.src = saved as unknown as string;
+    img.onload = async function () {
+      if (contextRef.current !== null) {
+        contextRef.current.clearRect(0, 0, canvas?.width, canvas?.height);
+        contextRef.current.drawImage(img, 0, 0, canvas?.width, canvas?.height);
+        contextRef.current.beginPath();
+        contextRef.current.rect(startPosition.x, startPosition.y, width, height);
+        contextRef.current.fillStyle = color;
+        contextRef.current.fill();
+      }
+    };
+  }
+
+  function setCircle(width: number, height: number, currentX: number, currentY: number, canvas: HTMLCanvasElement, img: HTMLImageElement) {
+    img.src = saved as unknown as string;
+    img.onload = async function () {
+      if (null !== contextRef.current) {
+        contextRef.current.clearRect(0, 0, canvas?.width, canvas?.height);
+        contextRef.current.drawImage(img, 0, 0, canvas?.width, canvas?.height);
+        const r = Math.sqrt(width ** 2 + height ** 2);
+        contextRef.current.beginPath();
+        contextRef.current.arc(currentX, currentY, r, 0, 2 * Math.PI);
+        contextRef.current.fillStyle = color;
+        contextRef.current.fill();
+      }
+    };
+  }
+
+  function setStraightLine(width: number, height: number, currentX: number, currentY: number, canvas: HTMLCanvasElement, img: HTMLImageElement) {
+    img.src = saved as unknown as string;
+    img.onload = async function () {
+      if (contextRef.current !== null) {
+        contextRef.current.clearRect(0, 0, canvas?.width, canvas?.height);
+        contextRef.current.drawImage(img, 0, 0, canvas?.width, canvas?.height);
+        contextRef.current.beginPath();
+        contextRef.current.moveTo(startPosition.x, startPosition.y);
+        contextRef.current.lineTo(currentX, currentY);
+        contextRef.current.stroke();
+      }
+    };
+  }
+
+  const draw = (event: React.MouseEvent<HTMLElement>) => {
     if (!isDrawing) {
       return;
     }
+    const target = event.target as HTMLElement;
+
     const canvas = canvasRef.current;
-    let currentX = event.pageX - event.target.offsetLeft;
-    let currentY = event.pageY - event.target.offsetTop;
+    const currentX = event.pageX - target.offsetLeft;
+    const currentY = event.pageY - target.offsetTop;
     const width = currentX - startPosition.x;
     const height = currentY - startPosition.y;
     const img = new Image();
-    switch (tool) {
-      case 'Brush':
-        img.src = saved;
-        img.onload = async function () {
-          contextRef.current.lineTo(currentX, currentY);
-          contextRef.current.stroke();
-        };
-        break;
+    if (canvas !== null) {
+      switch (tool) {
+        case 'Brush':
+          setBrush(currentX, currentY, img);
+          break;
 
-      case 'Rectangle':
-        img.src = saved;
-        img.onload = async function () {
-          contextRef.current.clearRect(0, 0, canvas?.width, canvas?.height);
-          contextRef.current.drawImage(
-            img,
-            0,
-            0,
-            canvas?.width,
-            canvas?.height
-          );
-          contextRef.current.beginPath();
-          contextRef.current.rect(
-            startPosition.x,
-            startPosition.y,
-            width,
-            height
-          );
-          contextRef.current.fillStyle = color;
-          contextRef.current.fill();
-        };
-        break;
+        case 'Rectangle':
+          setRectangle(width, height, canvas, img);
+          break;
 
-      case 'Circle':
-        img.src = saved;
-        img.onload = async function () {
-          contextRef.current.clearRect(0, 0, canvas?.width, canvas?.height);
-          contextRef.current.drawImage(
-            img,
-            0,
-            0,
-            canvas?.width,
-            canvas?.height
-          );
-          let r = Math.sqrt(width ** 2 + height ** 2);
-          contextRef.current.beginPath();
-          contextRef.current.arc(currentX, currentY, r, 0, 2 * Math.PI);
-          contextRef.current.fillStyle = color;
-          contextRef.current.fill();
-        };
-        break;
-      case 'Straight Line':
-        img.src = saved;
-        img.onload = async function () {
-          contextRef.current.clearRect(0, 0, canvas?.width, canvas?.height);
-          contextRef.current.drawImage(
-            img,
-            0,
-            0,
-            canvas?.width,
-            canvas?.height
-          );
-          contextRef.current.beginPath();
-          contextRef.current.moveTo(startPosition.x, startPosition.y);
-          contextRef.current.lineTo(currentX, currentY);
-          contextRef.current.stroke();
-        };
-        break;
+        case 'Circle':
+          setCircle(width, height, currentX, currentY, canvas, img);
+          break;
+        case 'Straight Line':
+          setStraightLine(width, height, currentX, currentY, canvas, img);
+          break;
+      }
     }
   };
 
-  
-
   useEffect(() => {
-   
-    const canvas: HTMLCanvasElement | null = canvasRef.current;
+    const canvas = canvasRef.current;
     const context = canvas?.getContext('2d');
-    context!.lineCap = 'round';
+    // context!.lineCap = 'butt';
     // context!.scale(2, 2);
-    // context!.lineCap = 'round';
+    context!.lineCap = 'round';
     context!.strokeStyle = color;
     context!.lineWidth = +strokeSize;
-    contextRef.current = context;
+    if (context) {
+      contextRef.current = context;
+    }
   }, [color, strokeSize]);
 
   return (
     <div>
-      <CanvasView
-        startDrawing={startDrawing}
-        finishDrawing={finishDrawing}
-        draw={draw}
-       
-        canvasRef={canvasRef}
-      />
+      <CanvasView startDrawing={startDrawing} finishDrawing={finishDrawing} draw={draw} canvasRef={canvasRef} />
     </div>
   );
-}
+};

@@ -1,19 +1,14 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useAppSelector } from '../../../hooks/hooks';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { ToolbarView } from '../../views/Toolbar/Toolbar';
-import { IToolbar } from './Toolbar.interface';
 
-export function ToolbarContainer() {
+export const ToolbarContainer = () => {
   const dispatch = useDispatch();
-  const tool = useAppSelector((state) => state.tool);
-  const handleClickSetTool = (event: any) => {
-    dispatch({ type: 'CHANGE_TOOL', payload: event.target.alt });
+
+  const handleClickSetTool = (event: React.MouseEvent<HTMLElement>) => {
+    const target = event.target as HTMLImageElement;
+    dispatch({ type: 'CHANGE_TOOL', payload: target.alt });
   };
 
-  return (
-    <div>
-      <ToolbarView handleClickSetTool={handleClickSetTool} />
-    </div>
-  );
-}
+  return <ToolbarView handleClickSetTool={handleClickSetTool} />;
+};

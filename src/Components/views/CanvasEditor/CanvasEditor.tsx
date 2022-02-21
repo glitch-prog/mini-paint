@@ -1,20 +1,15 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { GALLERY_PAGE } from '../../../constants/constants';
-import { CanvasContainer } from '../../Containers/Canvas/Canvas';
-import { ColorInputContainer } from '../../Containers/ColorInput/ColorInput';
-import { StrokeSizeInputContainer } from '../../Containers/StrokeSizeInput/StrokeSizeInput';
-import { ToolbarContainer } from '../../Containers/Toolbar/Toolbar';
+import { CanvasContainer } from '../../containers/Canvas/Canvas';
+import { ColorInputContainer } from '../../containers/ColorInput/ColorInput';
+import { StrokeSizeInputContainer } from '../../containers/StrokeSizeInput/StrokeSizeInput';
+import { ToolbarContainer } from '../../containers/Toolbar/Toolbar';
 import { ICanvasEditor } from './CanvasEditor.interface';
 import styles from './Canvas.module.css';
+import { LogoutBtn } from '../../containers/LogoutBtn/LogoutBtn';
 
-export function CanvasEditorView({
-  saved,
-  setSaved,
-  createImage,
-  handleClickSetSaved,
-}: ICanvasEditor) {
+export const CanvasEditorView = ({ createImage, handleClickSetSaved }: ICanvasEditor) => {
   return (
     <div className={styles.main__block}>
       <div className={styles.toolbar}>
@@ -33,7 +28,8 @@ export function CanvasEditorView({
           </Link>
         </button>
       </div>
-      <CanvasContainer saved={saved} setSaved={setSaved} />
+      <CanvasContainer />
+      <LogoutBtn />
     </div>
   );
-}
+};
