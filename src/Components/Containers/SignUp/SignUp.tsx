@@ -12,7 +12,7 @@ export const SignUpContainer = () => {
 
   const register = async () => {
     try {
-       await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
+      await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
 
       navigate(CANVAS_PAGE);
     } catch (error) {

@@ -6,7 +6,7 @@ export const StrokeSizeInputContainer = () => {
   const [size, setSize] = useState<string>('');
   const dispatch = useAppDispatch();
 
-  const handleChangeStrokeSize = (event:React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeStrokeSize = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSize(event.target.value);
     dispatch({ type: 'CHANGE_STROKE', payload: event.target.value });
   };
