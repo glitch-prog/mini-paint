@@ -62,4 +62,6 @@ For this project, next libraries and tools have been chosen:
 - Redux
 - React-router-dom
 - Firebase(Firebase Authentication, Firebase Firestore)
+- ESLint
+- Prettier
 
