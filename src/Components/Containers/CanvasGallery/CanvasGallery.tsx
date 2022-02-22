@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { collection, getDocs, QueryDocumentSnapshot, QuerySnapshot } from 'firebase/firestore';
+import { collection, DocumentData, DocumentSnapshot, getDocs, QueryDocumentSnapshot, QuerySnapshot } from 'firebase/firestore';
 
 import { db } from '../../../config/firebase-config';
 import { CanvasGalleryCardView } from '../../views/CanvasGalleryCard/CanvasGalleryCard';
@@ -18,7 +18,7 @@ export const CanvasGalleryContainer = () => {
       const data = await getDocs(todosCollectionRef);
       dispatch({
         type: 'GET_CARDS',
-        payload: data.docs.map((doc: any) => ({ ...doc.data(), id: doc.id })),
+        payload: data.docs.map((doc: DocumentData ) => ({ ...doc.data(), id: doc.id })),
       });
     },
     [dispatch],
