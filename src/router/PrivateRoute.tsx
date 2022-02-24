@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { SIGN_IN_PAGE } from '../constants/constants';
 import { useAppSelector } from '../hooks/hooks';
-import { IChildren } from './PrivateRout.interface';
+import { IChildren } from './PrivateRoute.interface';
 
 export const PrivateRoute = ({ children }: IChildren) => {
   const isAuthorized = useAppSelector((state) => state.auth.auth);

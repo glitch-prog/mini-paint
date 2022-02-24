@@ -11,7 +11,7 @@ import { LogoutBtn } from '../../containers/LogoutBtn/LogoutBtn';
 
 export const CanvasEditorView = ({ createImage, handleClickSetSaved }: ICanvasEditor) => {
   return (
-    <div className={styles.main__block}>
+    <div className={styles.wrapper}>
       <div className={styles.toolbar}>
         <button className={styles.save__btn} onClick={handleClickSetSaved}>
           Save
@@ -23,7 +23,7 @@ export const CanvasEditorView = ({ createImage, handleClickSetSaved }: ICanvasEd
         </div>
 
         <button className={styles.save__btn}>
-          <Link className={styles.link} to={GALLERY_PAGE}>
+          <Link className={styles.canvas_link} to={GALLERY_PAGE}>
             Gallery
           </Link>
         </button>

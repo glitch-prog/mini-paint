@@ -27,7 +27,7 @@ export const SignInContainer = () => {
   const handleLoginClick = async () => {
     try {
       const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
-      dispatch({ type: 'SET_AUTH', payload: !isAuth });
+      dispatch({ type: 'SET_AUTH', payload: true });
 
       navigate(CANVAS_PAGE);
     } catch (error) {

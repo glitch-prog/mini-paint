@@ -25,7 +25,7 @@ export const SignInView = ({ onChangePassword, onChangeEmail, onClickLogin }: IS
           </button>
         </div>
         <div>
-          <Link className="link" to={SIGN_UP_PAGE}>
+          <Link className="sign_link" to={SIGN_UP_PAGE}>
             Sign up
           </Link>
         </div>

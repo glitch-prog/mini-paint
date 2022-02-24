@@ -1,11 +1,14 @@
 import React from 'react';
 import { ICard } from '../../containers/CanvasGallery/CanvasGallery.interface';
+import './CanvasGallery.css';
 
 export const CanvasGalleryCardView = ({ us }: { us: ICard }) => {
   return (
-    <div key={us.uuid} style={{ border: '1px solid #000' }}>
-      <p>{us.user}</p>
-      <img src={us.img} alt="img" />
-    </div>
+    <>
+      <div className="gallery__card" key={us.uuid}>
+        <img className="gallery__card__img" src={us.img} alt="img" />
+        <p className="gallery__card__creator">Creator: {us.user}</p>
+      </div>
+    </>
   );
 };

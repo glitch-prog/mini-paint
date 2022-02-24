@@ -1,3 +1,20 @@
+
+.wrapper{
+  min-width: 762px;
+  height:100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+   /* position: relative; */
+  /* top: 50%; */
+  /* left: 50%;  */
+
+  background-color: #ffffff;
+  border-radius: 20px;
+}
+
+
 .toolbar {
   margin-top: 40px;
   width: 600px;
@@ -31,7 +48,7 @@
   
 }
 
-.link {
+.canvas_link {
   color: #ffffff;
   text-decoration: none;
 }

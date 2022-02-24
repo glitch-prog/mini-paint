@@ -8,9 +8,9 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import './CanvasGallery.css';
 
 export const CanvasGalleryContainer = () => {
+  const isAuth = useAppSelector((state) => state.auth.auth);
   const cards = useAppSelector((state) => state.gallery['cards']);
   const dispatch = useAppDispatch();
-
   const [user, setUser] = useState<string>('');
 
   const getImages = useCallback(
@@ -18,7 +18,7 @@ export const CanvasGalleryContainer = () => {
       const data = await getDocs(todosCollectionRef);
       dispatch({
         type: 'GET_CARDS',
-        payload: data.docs.map((doc: DocumentData ) => ({ ...doc.data(), id: doc.id })),
+        payload: data.docs.map((doc: DocumentData) => ({ ...doc.data(), id: doc.id })),
       });
     },
     [dispatch],
@@ -42,7 +42,7 @@ export const CanvasGalleryContainer = () => {
   });
 
   return (
-    <div className="main__block">
+    <div className="gallery__main__block">
       <input className="search__input" type="text" onChange={handleChangeFilterUser} />
 
       {filteredCards.length > 0 ? (

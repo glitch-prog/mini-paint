@@ -23,8 +23,8 @@ export const SignUpView = ({ handleOnChangeRegisterEmail, handleOnChangeRegister
         </button>
       </div>
 
-      <div>
-        <Link to={SIGN_IN_PAGE} className="link">
+      <div className="sign__link">
+        <Link to={SIGN_IN_PAGE} className="sign__link">
           Sign in
         </Link>
       </div>
