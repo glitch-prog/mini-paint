@@ -1,7 +1,7 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 
 const defaultIsAuthorizedState = {
-  auth: true,
+  auth: false,
 };
 
 export const isAuthorizedReducer = (state = defaultIsAuthorizedState, action: { type: string; payload: boolean }) => {
