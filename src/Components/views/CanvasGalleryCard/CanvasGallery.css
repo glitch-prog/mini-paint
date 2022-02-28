@@ -1,0 +1,18 @@
+.gallery__card{
+  display: flex;
+  flex-direction:inherit
+}
+
+.gallery__card:not(:last-child){
+  margin-bottom: 56px;
+}
+
+.gallery__card__img{
+  border: 2px solid #000000;
+  box-sizing: border-box;
+  box-shadow: 4px 6px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+.gallery__card__creator{
+  margin-top: 16px;
+}

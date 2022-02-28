@@ -1,0 +1,58 @@
+
+.wrapper{
+  min-width: 762px;
+  height:100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+   /* position: relative; */
+  /* top: 50%; */
+  /* left: 50%;  */
+
+  background-color: #ffffff;
+  border-radius: 20px;
+}
+
+
+.toolbar {
+  margin-top: 40px;
+  width: 600px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.tools {
+  width: 350px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.save__btn {
+  padding: 10;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 10px;
+  background: #1bb7ac;
+  border: none;
+  border-radius: 6px;
+  font-family: Commissioner;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  color: #ffffff;
+  
+}
+
+.canvas_link {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
