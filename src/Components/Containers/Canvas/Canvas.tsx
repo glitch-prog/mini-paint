@@ -22,10 +22,13 @@ export const CanvasContainer = () => {
     const target = event.target as HTMLElement;
     if (contextRef.current != null) {
       contextRef.current.beginPath();
+      contextRef.current.moveTo(event.pageX - target.offsetLeft, event.pageY - target.offsetTop)
     }
     setIsDrawing(true);
     const startX = event.pageX - target.offsetLeft;
     const startY = event.pageY - target.offsetTop;
+
+    
     setPosition({ x: startX, y: startY });
     dispatch({ type: 'ADD_IMG', payload: canvasRef.current?.toDataURL() });
   };
@@ -92,7 +95,6 @@ export const CanvasContainer = () => {
       return;
     }
     const target = event.target as HTMLElement;
-
     const canvas = canvasRef.current;
     const currentX = event.pageX - target.offsetLeft;
     const currentY = event.pageY - target.offsetTop;
@@ -124,6 +126,7 @@ export const CanvasContainer = () => {
     const context = canvas?.getContext('2d');
     context!.lineCap = 'round';
     context!.strokeStyle = color;
+    context!.lineJoin = 'round';
     context!.lineWidth = +strokeSize;
     if (context) {
       contextRef.current = context;
