@@ -1,24 +1,20 @@
-import { onAuthStateChanged, User } from 'firebase/auth';
+import { User } from 'firebase/auth';
 import { addDoc, collection } from 'firebase/firestore';
-import React, { useMemo, useState } from 'react';
+import React, {  useState } from 'react';
 
-import { auth, db } from '../../../config/firebase-config';
+import {  db } from '../../../config/firebase-config';
 import { CanvasEditorView } from '../../views/CanvasEditor/CanvasEditor';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { useGetUser } from '../../../hooks/hooks';
 
 export const CanvasEditorContainer = () => {
   const dispatch = useAppDispatch();
-  const tool = useAppSelector((state) => state.tool.tool);
-  const cards = useAppSelector((state) => state.gallery['cards']);
-  const strokeSize = useAppSelector((state) => state.stroke.size);
-
   const [user, setUser] = useState<User | null>();
-  // const [saved, setSaved] = useState<string | undefined>('');
-
   const saved = useAppSelector((state) => state.img.image);
 
-  const handleClickSetTool = (event: { target: { textContent: string } }) => {
+  const handleClickSetTool = (event: React.MouseEvent<HTMLLabelElement>) => {
+    if (!(event.target instanceof HTMLElement)) return;
+    event.target as HTMLElement;
     dispatch({ type: 'CHANGE_TOOL', payload: event.target.textContent });
   };
 

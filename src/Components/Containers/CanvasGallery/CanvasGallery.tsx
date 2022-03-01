@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { collection, DocumentData, DocumentSnapshot, getDocs, QueryDocumentSnapshot, QuerySnapshot } from 'firebase/firestore';
+import { collection, DocumentData,  getDocs } from 'firebase/firestore';
 
 import { db } from '../../../config/firebase-config';
 import { CanvasGalleryCardView } from '../../views/CanvasGalleryCard/CanvasGalleryCard';
@@ -8,7 +8,6 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import './CanvasGallery.css';
 
 export const CanvasGalleryContainer = () => {
-  const isAuth = useAppSelector((state) => state.auth.auth);
   const cards = useAppSelector((state) => state.gallery['cards']);
   const dispatch = useAppDispatch();
   const [user, setUser] = useState<string>('');
@@ -24,7 +23,7 @@ export const CanvasGalleryContainer = () => {
     [dispatch],
   );
 
-  const handleChangeFilterUser = (event: { target: { value: string } }) => {
+  const handleChangeFilterUser = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUser(event.target.value);
   };
 

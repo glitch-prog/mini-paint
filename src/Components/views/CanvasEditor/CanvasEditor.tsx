@@ -9,7 +9,7 @@ import { ICanvasEditor } from './CanvasEditor.interface';
 import styles from './Canvas.module.css';
 import { LogoutBtn } from '../../containers/LogoutBtn/LogoutBtn';
 
-export const CanvasEditorView = ({ createImage, handleClickSetSaved }: ICanvasEditor) => {
+export const CanvasEditorView = ({ handleClickSetSaved }: ICanvasEditor) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.toolbar}>
@@ -29,7 +29,7 @@ export const CanvasEditorView = ({ createImage, handleClickSetSaved }: ICanvasEd
         </button>
       </div>
       <CanvasContainer />
-      <LogoutBtn />
+      <LogoutBtn className={styles.logout__btn} />
     </div>
   );
 };

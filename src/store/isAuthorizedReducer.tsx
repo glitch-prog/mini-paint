@@ -1,5 +1,3 @@
-import { PayloadAction } from '@reduxjs/toolkit';
-
 const defaultIsAuthorizedState = {
   auth: true,
 };

@@ -1,4 +1,4 @@
-import { AnyAction, PayloadAction } from '@reduxjs/toolkit';
+import { AnyAction } from '@reduxjs/toolkit';
 
 interface ICard {
   img: string | undefined;

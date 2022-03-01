@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { SIGN_IN_PAGE, SIGN_UP_PAGE, CANVAS_PAGE, GALLERY_PAGE } from '../constants/constants';
 import { SignInContainer } from '../Components/containers/SignIn/SignIn';
 import { SignUpContainer } from '../Components/containers/SignUp/SignUp';

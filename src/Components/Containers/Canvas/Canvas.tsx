@@ -1,4 +1,4 @@
-import React, { MutableRefObject, RefObject, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { CanvasView } from '../../views/Canvas/Canvas';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 
@@ -27,7 +27,6 @@ export const CanvasContainer = () => {
     const startX = event.pageX - target.offsetLeft;
     const startY = event.pageY - target.offsetTop;
     setPosition({ x: startX, y: startY });
-    // setSaved(canvasRef.current?.toDataURL());
     dispatch({ type: 'ADD_IMG', payload: canvasRef.current?.toDataURL() });
   };
 
@@ -123,8 +122,6 @@ export const CanvasContainer = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas?.getContext('2d');
-    // context!.lineCap = 'butt';
-    // context!.scale(2, 2);
     context!.lineCap = 'round';
     context!.strokeStyle = color;
     context!.lineWidth = +strokeSize;

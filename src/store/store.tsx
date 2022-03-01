@@ -5,6 +5,7 @@ import { strokeReducer } from './strokeReducer';
 import { toolReducer } from './toolReducer';
 import { savedImageReducer } from './savedImgReducer';
 import { isAuthorizedReducer } from './isAuthorizedReducer';
+import { userReducer } from './userReducer';
 
 const rootReducer = combineReducers({
   color: colorReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   stroke: strokeReducer,
   img: savedImageReducer,
   auth: isAuthorizedReducer,
+  user: userReducer
 });
 
 export const store = createStore(rootReducer);

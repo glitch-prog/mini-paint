@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
+import { useAppDispatch } from '../../../hooks/hooks';
 import { StrokeSizeInputView } from '../../views/StrokeSizeInput/StrokeSizeInput';
 
 export const StrokeSizeInputContainer = () => {

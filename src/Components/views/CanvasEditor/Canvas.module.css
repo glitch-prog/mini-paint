@@ -48,6 +48,24 @@
   
 }
 
+.logout__btn{
+  padding: 10;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 10px;
+  background: #ff0000;
+  border: none;
+  border-radius: 6px;
+  font-family: Commissioner;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  color:#ffffff;
+  text-decoration: none;
+}
+
 .canvas_link {
   color: #ffffff;
   text-decoration: none;

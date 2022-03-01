@@ -1,32 +1,29 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { FirebaseError } from 'firebase/app';
-import { FirestoreError } from 'firebase/firestore';
 import { CANVAS_PAGE } from '../../../constants/constants';
 import { auth } from '../../../config/firebase-config';
 import { SignInView } from '../../views/SignIn/SignIn';
-import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
-// import { ErrorMessageView } from '../../views/ErrorMessage/ErrorMessage';
+import { useAppDispatch } from '../../../hooks/hooks';
 
 export const SignInContainer = () => {
   const navigate = useNavigate();
-  const isAuth = useAppSelector((state) => state.auth.auth);
   const dispatch = useAppDispatch();
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
 
-  const handleOnChangeEmail = (event: { target: { value: React.SetStateAction<string> } }) => {
+  const handleOnChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLoginEmail(event.target.value);
   };
 
-  const handleOnChangePassword = (event: { target: { value: React.SetStateAction<string> } }) => {
+  const handleOnChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLoginPassword(event.target.value);
   };
 
   const handleLoginClick = async () => {
     try {
       const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+      dispatch({ type: 'SET_USER', payload: user });
       dispatch({ type: 'SET_AUTH', payload: true });
 
       navigate(CANVAS_PAGE);

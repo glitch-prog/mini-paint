@@ -1,4 +1,4 @@
-import { PayloadAction } from '@reduxjs/toolkit';
+
 
 const defaultSavedImageState = {
   image: '',
