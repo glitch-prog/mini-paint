@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
   stroke: strokeReducer,
   img: savedImageReducer,
   auth: isAuthorizedReducer,
-  user: userReducer
+  user: userReducer,
 });
 
 export const store = createStore(rootReducer);

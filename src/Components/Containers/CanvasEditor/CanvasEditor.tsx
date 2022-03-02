@@ -1,8 +1,8 @@
 import { User } from 'firebase/auth';
 import { addDoc, collection } from 'firebase/firestore';
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 
-import {  db } from '../../../config/firebase-config';
+import { db } from '../../../config/firebase-config';
 import { CanvasEditorView } from '../../views/CanvasEditor/CanvasEditor';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { useGetUser } from '../../../hooks/hooks';

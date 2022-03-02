@@ -2,7 +2,6 @@ import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { ColorInputView } from '../../views/ColorInput/ColorInput';
 
-
 export function ColorInputContainer() {
   const dispatch = useAppDispatch();
   const color = useAppSelector((state) => state.color.color);

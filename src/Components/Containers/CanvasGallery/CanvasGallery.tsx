@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { collection, DocumentData,  getDocs } from 'firebase/firestore';
+import { collection, DocumentData, getDocs } from 'firebase/firestore';
 
 import { db } from '../../../config/firebase-config';
 import { CanvasGalleryCardView } from '../../views/CanvasGalleryCard/CanvasGalleryCard';

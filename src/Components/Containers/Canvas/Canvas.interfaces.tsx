@@ -1,5 +1,3 @@
-import { SetStateAction } from 'react';
-
 export interface INativeElement {
   nativeEvent: { offsetX: number; offsetY: number };
 }

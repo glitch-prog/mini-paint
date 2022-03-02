@@ -22,13 +22,12 @@ export const CanvasContainer = () => {
     const target = event.target as HTMLElement;
     if (contextRef.current != null) {
       contextRef.current.beginPath();
-      contextRef.current.moveTo(event.pageX - target.offsetLeft, event.pageY - target.offsetTop)
+      contextRef.current.moveTo(event.pageX - target.offsetLeft, event.pageY - target.offsetTop);
     }
     setIsDrawing(true);
     const startX = event.pageX - target.offsetLeft;
     const startY = event.pageY - target.offsetTop;
 
-    
     setPosition({ x: startX, y: startY });
     dispatch({ type: 'ADD_IMG', payload: canvasRef.current?.toDataURL() });
   };
